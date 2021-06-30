@@ -29,7 +29,7 @@ export default {
       } else {
         clearInterval(this.progressInterval);
       }
-    }, 1000);
+    }, 3000);
   },
   methods: {
     ...mapActions('file', ['loadPendingTask', 'loadTaskProgress']),

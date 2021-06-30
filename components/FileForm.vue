@@ -66,7 +66,7 @@ export default {
           } else {
             clearInterval(this.progressInterval);
           }
-        }, 1000);
+        }, 3000);
       } catch (e) {
         console.log(e);
       }
