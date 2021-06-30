@@ -1,5 +1,5 @@
 <template>
-  <v-row justify="center" class="mt-6" align="center">
+  <v-row justify="center" align="center">
     <v-col cols="12" sm="8" md="6">
       <v-expand-transition>
         <task-progress v-if="task" :task="task" />
