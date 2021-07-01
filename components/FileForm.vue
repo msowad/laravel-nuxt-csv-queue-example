@@ -1,5 +1,5 @@
 <template>
-  <v-card class="pa-6">
+  <v-card elevation="10" class="pa-6">
     <v-form ref="form" v-model="valid" @submit.prevent="uploadFile">
       <v-card-title v-model="file" class="justify-center mb-2">
         Upload File
@@ -61,7 +61,7 @@ export default {
         this.$refs.form.reset();
 
         this.progressInterval = setInterval(() => {
-          if (this.task.progress < 100) {
+          if (this.task?.progress < 100) {
             this.loadTaskProgress(this.task.id);
           } else {
             clearInterval(this.progressInterval);

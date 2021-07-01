@@ -30,6 +30,10 @@ export const actions = {
       commit('SET_ERROR', e.message);
     }
   },
+
+  clearTask({ commit }) {
+    commit('SET_TASK', null);
+  },
 };
 
 export const mutations = {
