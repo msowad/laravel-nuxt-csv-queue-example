@@ -1,6 +1,7 @@
 export const state = () => ({
   error: null,
   task: null,
+  previousTasks: [],
 });
 
 export const actions = {
@@ -34,6 +35,11 @@ export const actions = {
   clearTask({ commit }) {
     commit('SET_TASK', null);
   },
+
+  async loadHistory({ commit }) {
+    const { data } = await this.$axios.get('/batches');
+    commit('SET_PREVIOUS_TASK', data);
+  },
 };
 
 export const mutations = {
@@ -43,5 +49,9 @@ export const mutations = {
 
   SET_TASK(state, task) {
     state.task = task;
+  },
+
+  SET_PREVIOUS_TASK(state, tasks) {
+    state.previousTasks = tasks;
   },
 };

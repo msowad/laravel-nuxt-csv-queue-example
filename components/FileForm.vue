@@ -42,31 +42,32 @@ export default {
       valid: false,
       file: null,
       required: (v) => !!v || 'The field is required.',
-      progressInterval: null,
     };
   },
+
   computed: {
     ...mapState({
       error: ({ file }) => file.error,
       task: ({ file }) => file.task,
     }),
   },
+
+  beforeDestroy() {
+    clearInterval(this.progressInterval);
+  },
+
   methods: {
     async uploadFile() {
       this.loading = true;
       try {
         const formData = new FormData();
         formData.append('csv', this.file);
+        formData.append('name', this.file.name.replace('.csv', ''));
+
         await this.upload(formData);
         this.$refs.form.reset();
 
-        this.progressInterval = setInterval(() => {
-          if (this.task?.progress < 100) {
-            this.loadTaskProgress(this.task.id);
-          } else {
-            clearInterval(this.progressInterval);
-          }
-        }, 3000);
+        this.$emit('fileSent');
       } catch (e) {
         console.log(e);
       }
