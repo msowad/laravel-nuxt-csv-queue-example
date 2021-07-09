@@ -18,4 +18,4 @@ module.exports = {
     'no-console': 'off',
     'no-semi': 'off',
   },
-}
+};
