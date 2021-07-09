@@ -1,46 +1,52 @@
 <template>
-  <v-slide-y-transition group>
-    <template v-for="task in tasks">
-      <v-card :key="task.id" elevation="10" class="mb-6">
-        <v-toolbar dense flat color="primary mb-4" dark>
-          <v-toolbar-title>{{ task.name }}</v-toolbar-title>
-        </v-toolbar>
-        <div class="px-6 pb-6 d-flex align-center flex-column">
-          <v-progress-circular
-            :rotate="360"
-            :size="80"
-            :width="15"
-            :value="task.progress"
-            color="success"
-          >
-            {{ task.progress }}%
-          </v-progress-circular>
-          <v-row class="mt-2">
-            <v-col
-              v-for="result in getCards(task)"
-              :key="`task-result-card${result.bg}`"
-              cols="6"
+  <v-expand-transition>
+    <v-slide-y-transition v-if="tasks.length" group>
+      <template v-for="task in tasks">
+        <v-card :key="task.id" elevation="10" class="mb-6">
+          <v-toolbar dense flat color="primary mb-4" dark>
+            <v-toolbar-title>{{ task.name }}</v-toolbar-title>
+          </v-toolbar>
+          <div class="px-6 pb-6 d-flex align-center flex-column">
+            <v-progress-circular
+              :rotate="360"
+              :size="80"
+              :width="15"
+              :value="task.progress"
+              color="success"
             >
-              <v-card
-                :class="`lighten-2 black--text ${result.bg} text-center pa-1`"
-                elevation="10"
+              {{ task.progress }}%
+            </v-progress-circular>
+            <v-row class="mt-2">
+              <v-col
+                v-for="result in getCards(task)"
+                :key="`task-result-card${result.bg}`"
+                cols="6"
               >
-                <h4 class="subtitle-2" v-text="result.title" />
-                <p class="ma-0" v-text="result.data" />
-              </v-card>
-            </v-col>
-          </v-row>
-        </div>
-      </v-card>
-    </template>
-  </v-slide-y-transition>
+                <v-card
+                  :class="`lighten-2 black--text ${result.bg} text-center pa-1`"
+                  elevation="10"
+                >
+                  <h4 class="subtitle-2" v-text="result.title" />
+                  <p class="ma-0" v-text="result.data" />
+                </v-card>
+              </v-col>
+            </v-row>
+          </div>
+        </v-card>
+      </template>
+    </v-slide-y-transition>
+  </v-expand-transition>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 
 export default {
-  props: { tasks: { type: Array, required: true } },
+  computed: {
+    ...mapState({
+      tasks: ({ file }) => file.tasks,
+    }),
+  },
 
   methods: {
     getCards(task) {

@@ -68,6 +68,33 @@ export const mutations = {
     state.tasks = tasks.filter((t) => t.progress < 100);
 
     const completedTasks = tasks.filter((t) => t.progress >= 100);
-    state.completedTasks = [...state.completedTasks, ...completedTasks];
+    state.completedTasks.push(...completedTasks);
   },
 };
+
+// {
+//   cancelledAt: null,
+//   createdAt: '2021-07-09T08:23:44.000000Z',
+//   failedJobs: 0,
+//   finishedAt: '2021-07-09T08:23:47.000000Z',
+//   id: '93de0c8b-6638-42c3-b9d4-ed963adfa2b1',
+//   name: 'csv 10 records',
+//   options: [],
+//   pendingJobs: 0,
+//   processedJobs: 1,
+//   progress: 100,
+//   totalJobs: 1,
+// },
+// {
+//   cancelledAt: null,
+//   createdAt: '2021-07-09T08:23:44.000000Z',
+//   failedJobs: 0,
+//   finishedAt: '2021-07-09T08:23:47.000000Z',
+//   id: '912121sdsd3de0c8b-6638-42c3-b9d4-ed963adfa2b1',
+//   name: 'csv 10 records',
+//   options: [],
+//   pendingJobs: 0,
+//   processedJobs: 1,
+//   progress: 100,
+//   totalJobs: 1,
+// },

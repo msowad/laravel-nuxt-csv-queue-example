@@ -1,11 +1,9 @@
 <template>
   <v-row justify="center" align="center">
     <v-col cols="12" sm="8" md="6">
-      <v-expand-transition mode="out-in">
-        <task-progress v-if="tasks.length" :tasks="tasks" />
+      <completed-task />
 
-        <completed-task v-if="completedTasks.length" :tasks="completedTasks" />
-      </v-expand-transition>
+      <task-progress />
 
       <file-form @fileSent="loadProgress" @clear="clearProgressInterval" />
     </v-col>
