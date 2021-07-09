@@ -22,7 +22,6 @@ export default {
 
   async fetch() {
     await this.loadPendingTask();
-    await this.loadProgress();
   },
 
   computed: {
@@ -30,6 +29,10 @@ export default {
       tasks: ({ file }) => file.tasks,
       completedTasks: ({ file }) => file.completedTasks,
     }),
+  },
+
+  mounted() {
+    this.loadProgress();
   },
 
   beforeDestroy() {
