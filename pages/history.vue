@@ -1,14 +1,21 @@
 <template>
   <v-card>
-    <v-card-title> History </v-card-title>
     <v-data-table
       :headers="headers"
       item-key="batch_id"
       :items="tasks"
       :search="search"
-      sort-by="finished_at"
-      sort-desc
+      :loading="loading"
     >
+      <template #top>
+        <v-toolbar flat>
+          <v-toolbar-title>History</v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-btn text icon @click="sync">
+            <v-icon>mdi-sync</v-icon>
+          </v-btn>
+        </v-toolbar>
+      </template>
     </v-data-table>
   </v-card>
 </template>
@@ -19,6 +26,7 @@ import { mapActions, mapState } from 'vuex';
 export default {
   data() {
     return {
+      loading: false,
       search: '',
       headers: [
         {
@@ -44,6 +52,11 @@ export default {
   },
 
   methods: {
+    async sync() {
+      this.loading = true;
+      await this.loadHistory();
+      this.loading = false;
+    },
     ...mapActions('file', ['loadHistory']),
   },
 };

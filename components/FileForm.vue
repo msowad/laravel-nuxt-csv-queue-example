@@ -64,6 +64,8 @@ export default {
         formData.append('csv', this.file);
         formData.append('name', this.file.name.replace('.csv', ''));
 
+        this.$emit('clear');
+
         await this.upload(formData);
         this.$refs.form.reset();
 

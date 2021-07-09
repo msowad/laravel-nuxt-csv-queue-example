@@ -1,6 +1,7 @@
 export const state = () => ({
   error: null,
-  task: null,
+  tasks: [],
+  completedTasks: [],
   previousTasks: [],
 });
 
@@ -8,16 +9,16 @@ export const actions = {
   async upload({ commit }, csv) {
     try {
       const { data } = await this.$axios.post('/upload-file', csv);
-      commit('SET_TASK', data);
+      commit('ADD_TASK', data);
     } catch (e) {
       commit('SET_ERROR', e.message);
     }
   },
 
-  async loadTaskProgress({ commit }, id) {
+  async loadTaskProgress({ commit }, ids) {
     try {
-      const { data } = await this.$axios.get(`/batch/${id}`);
-      commit('SET_TASK', data);
+      const { data } = await this.$axios.post(`/batch/progress`, { ids });
+      commit('SET_TASKS_PROGRESS', data);
     } catch (e) {
       commit('SET_ERROR', e.message);
     }
@@ -26,14 +27,14 @@ export const actions = {
   async loadPendingTask({ commit }) {
     try {
       const { data } = await this.$axios.get(`/batch/pending`);
-      commit('SET_TASK', data);
+      commit('SET_TASKS', data);
     } catch (e) {
       commit('SET_ERROR', e.message);
     }
   },
 
-  clearTask({ commit }) {
-    commit('SET_TASK', null);
+  clearCompletedTask({ commit }, id) {
+    commit('REMOVE_TASK', id);
   },
 
   async loadHistory({ commit }) {
@@ -47,11 +48,26 @@ export const mutations = {
     state.error = error;
   },
 
-  SET_TASK(state, task) {
-    state.task = task;
+  ADD_TASK(state, task) {
+    state.tasks.push(task);
+  },
+
+  SET_TASKS(state, task) {
+    state.tasks = task;
   },
 
   SET_PREVIOUS_TASK(state, tasks) {
     state.previousTasks = tasks;
+  },
+
+  REMOVE_TASK(state, id) {
+    state.completedTasks = state.completedTasks.filter((t) => t.id !== id);
+  },
+
+  SET_TASKS_PROGRESS(state, tasks) {
+    state.tasks = tasks.filter((t) => t.progress < 100);
+
+    const completedTasks = tasks.filter((t) => t.progress >= 100);
+    state.completedTasks = [...state.completedTasks, ...completedTasks];
   },
 };

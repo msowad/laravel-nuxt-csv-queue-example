@@ -1,10 +1,13 @@
 <template>
   <v-row justify="center" align="center">
     <v-col cols="12" sm="8" md="6">
-      <v-expand-transition>
-        <task-progress v-if="task" :task="task" />
+      <v-expand-transition mode="out-in">
+        <task-progress v-if="tasks.length" :tasks="tasks" />
+
+        <completed-task v-if="completedTasks.length" :tasks="completedTasks" />
       </v-expand-transition>
-      <file-form @fileSent="loadProgress" />
+
+      <file-form @fileSent="loadProgress" @clear="clearProgressInterval" />
     </v-col>
   </v-row>
 </template>
@@ -19,14 +22,14 @@ export default {
 
   async fetch() {
     await this.loadPendingTask();
+    await this.loadProgress();
   },
 
   computed: {
-    ...mapState({ task: ({ file }) => file.task }),
-  },
-
-  mounted() {
-    this.loadProgress();
+    ...mapState({
+      tasks: ({ file }) => file.tasks,
+      completedTasks: ({ file }) => file.completedTasks,
+    }),
   },
 
   beforeDestroy() {
@@ -34,10 +37,19 @@ export default {
   },
 
   methods: {
+    clearProgressInterval() {
+      clearInterval(this.progressInterval);
+    },
+
     loadProgress() {
+      clearInterval(this.progressInterval);
       this.progressInterval = setInterval(() => {
-        if (this.task?.progress < 100) {
-          this.loadTaskProgress(this.task.id);
+        if (
+          this.tasks.length &&
+          this.tasks.filter((t) => t.progress < 100).length
+        ) {
+          const ids = this.tasks.map((t) => t.id);
+          this.loadTaskProgress(ids);
         } else {
           clearInterval(this.progressInterval);
         }
