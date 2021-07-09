@@ -42,7 +42,7 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseUrl: 'http://127.0.0.1:8000/api',
+    baseUrl: process.env.API_URL,
   },
 
   router: {
@@ -58,7 +58,7 @@ export default {
     strategies: {
       laravelJWT: {
         provider: 'laravel/jwt',
-        url: 'http://127.0.0.1:8000',
+        url: process.env.JWT_URL,
         token: {
           property: 'access_token',
           maxAge: 60 * 60,
