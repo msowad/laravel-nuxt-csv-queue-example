@@ -9,11 +9,12 @@ export const state = () => ({
 
 export const actions = {
   async upload({ commit }, csv) {
+    commit('SET_ERROR', null);
     try {
       const { data } = await this.$axios.post('/upload-file', csv);
       commit('ADD_TASK', data);
     } catch (e) {
-      commit('SET_ERROR', e.message);
+      commit('SET_ERROR', e.response.data.errors.csv[0] || e.message);
     }
   },
 

@@ -12,8 +12,8 @@
               <v-icon small>mdi-close</v-icon>
             </v-btn>
           </v-toolbar>
-          <v-row class="px-6">
-            <v-col cols="6" class="justify-center d-flex">
+          <v-row class="px-md-6">
+            <v-col cols="12" class="justify-center d-flex">
               <v-progress-circular
                 :rotate="360"
                 :size="80"
@@ -25,7 +25,7 @@
               </v-progress-circular>
             </v-col>
             <v-col align-self="center">
-              <h5 class="headline">Completed!</h5>
+              <h5 class="headline text-center">Completed!</h5>
             </v-col>
           </v-row>
         </v-card>

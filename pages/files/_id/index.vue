@@ -1,13 +1,13 @@
 <template>
   <v-row>
     <v-col cols="12">
-      <v-card class="pa-2">
+      <v-card>
         <v-card-title v-text="fileName" />
       </v-card>
     </v-col>
 
     <v-col v-for="(row, index) in rows" :key="`file-row-${index}`" cols="12">
-      <v-card class="pa-8">
+      <v-card class="pa-md-8 py-3">
         <div>
           <v-row
             v-for="(data, key) in row"

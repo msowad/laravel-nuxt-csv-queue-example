@@ -1,11 +1,25 @@
 <template>
-  <v-card max-width="800px" class="mx-auto pa-10">
+  <v-card max-width="800px" class="mx-auto py-4 py-md-10 px-md-10">
     <div class="text-center">
-      <h5 class="display-1">
+      <h5 class="headline">
         <span class="red--text font-weight-bold"> Laravel</span> Job Batching
       </h5>
-      <h5 class="headline my-3">
-        Uploading csv files in background with realtime progress bar
+
+      <v-row>
+        <v-col
+          v-for="{ src, alt, w } in images"
+          :key="alt"
+          cols="12"
+          md="4"
+          align-self="center"
+          class="d-flex justify-center my-6"
+        >
+          <v-img :max-width="`${w ? w : 90}px`" :src="src" :alt="alt" />
+        </v-col>
+      </v-row>
+
+      <h5 class="title my-3">
+        Uploading csv files in background with progress report
       </h5>
     </div>
     <v-card max-width="500px" class="mx-auto mt-4" flat>
@@ -17,7 +31,7 @@
           </v-list-item-avatar>
           <v-list-item-content>
             <!-- eslint-disable-next-line vue/no-v-html -->
-            <v-list-item-title v-html="feature.title" />
+            <div v-html="feature.title" />
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -33,21 +47,48 @@ export default {
     features: [
       {
         icon: 'mdi-account',
-        class: 'amber',
-        title: 'Authentication using <a>Laravel JWT</a>',
+        class: 'cyan accent-2',
+        title:
+          'Authentication using <a class="feature-card-link" href="https://jwt-auth.readthedocs.io">Laravel JWT</a>',
       },
       {
-        icon: 'mdi-painting',
-        class: 'blue',
-        title:
-          'Designed with <a href="https://vuetifyjs.com" target="_blank">vuetify</a>',
+        icon: 'mdi-file',
+        class: 'pink accent-1',
+        title: 'Preview file data',
       },
       {
         icon: 'mdi-history',
-        class: 'purple lighten-2',
+        class: 'purple accent-1',
         title: 'Track previous activity',
+      },
+      {
+        icon: 'mdi-palette',
+        class: 'indigo accent-1',
+        title:
+          'Designed with <a class="feature-card-link" href="https://vuetifyjs.com" target="_blank">vuetify</a>',
+      },
+    ],
+    images: [
+      {
+        src: '/laravel.svg',
+        alt: 'Laravel Logo',
+        w: 150,
+      },
+      {
+        src: '/vuetify-logo.svg',
+        alt: 'Vuetify Logo',
+      },
+      {
+        src: '/nuxt.png',
+        alt: 'Nuxt Logo',
       },
     ],
   }),
 };
 </script>
+
+<style lang="scss">
+.feature-card-link {
+  text-decoration: underline !important;
+}
+</style>

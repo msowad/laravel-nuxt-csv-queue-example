@@ -1,5 +1,5 @@
 <template>
-  <v-card elevation="10" class="pa-6">
+  <v-card elevation="10" class="pa-md-6 pa-2">
     <v-form ref="form" v-model="valid" @submit.prevent="uploadFile">
       <v-card-title class="justify-center mb-2"> Upload File </v-card-title>
       <v-file-input
@@ -8,12 +8,15 @@
         label="csv file"
         :rules="[required]"
       />
-      <v-scroll-y-transition>
-        <div v-if="error" class="pa-3 mb-3 mx-3 error lighten-1 rounded">
-          <v-icon left>mdi-alert-circle</v-icon>
-          <span v-text="error"></span>
-        </div>
-      </v-scroll-y-transition>
+      <v-alert
+        :value="error ? true : false"
+        transition="slide-y-transition"
+        type="error"
+        text
+        :icon="false"
+      >
+        {{ error }}
+      </v-alert>
       <v-card-actions>
         <v-btn @click="$refs.form.reset()">clear</v-btn>
         <v-spacer />
@@ -65,7 +68,7 @@ export default {
         this.$emit('clear');
 
         await this.upload(formData);
-        // this.$refs.form.reset();
+        this.$refs.form.reset();
 
         this.$emit('fileSent');
       } catch (e) {

@@ -6,7 +6,9 @@
           <v-toolbar dense flat color="primary mb-4" dark>
             <v-toolbar-title>{{ task.name }}</v-toolbar-title>
           </v-toolbar>
-          <div class="px-6 pb-6 d-flex align-center flex-column">
+          <div
+            class="px-md-6 pb-md-6 px-2 pb-2 d-flex align-center flex-column"
+          >
             <v-progress-circular
               :rotate="360"
               :size="80"
