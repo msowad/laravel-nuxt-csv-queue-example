@@ -8,6 +8,13 @@
         label="csv file"
         :rules="[required]"
       />
+
+      <v-alert transition="slide-y-transition" type="info" text dismissible>
+        <a href="https://www.mockaroo.com/" target="_blank">
+          You can download csv file from here
+        </a>
+      </v-alert>
+
       <v-alert
         :value="error ? true : false"
         transition="slide-y-transition"
