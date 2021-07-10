@@ -18,7 +18,7 @@
             {{ user.email }}
           </p>
           <v-divider class="my-3"></v-divider>
-          <v-btn depressed rounded text to="history"> History </v-btn>
+          <v-btn depressed rounded text to="/history"> History </v-btn>
           <v-divider class="my-3"></v-divider>
           <v-btn depressed rounded text @click="logout"> Logout </v-btn>
         </div>

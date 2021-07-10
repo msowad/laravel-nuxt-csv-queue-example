@@ -16,6 +16,12 @@
           </v-btn>
         </v-toolbar>
       </template>
+
+      <template #[`item.action`]="{ item }">
+        <v-btn icon text :to="`/files/${item.batch_id}`">
+          <v-icon>mdi-eye</v-icon>
+        </v-btn>
+      </template>
     </v-data-table>
   </v-card>
 </template>
@@ -36,9 +42,9 @@ export default {
         },
         { text: 'Total Tasks', value: 'total_jobs', align: 'right' },
         { text: 'Failed Tasks', value: 'failed_jobs', align: 'right' },
-        { text: 'Pending Tasks', value: 'pending_jobs', align: 'right' },
         { text: 'Added At', value: 'created_at', align: 'right' },
         { text: 'Finished At', value: 'finished_at', align: 'right' },
+        { text: 'Action', value: 'action', sortable: false, align: 'right' },
       ],
     };
   },

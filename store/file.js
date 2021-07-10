@@ -3,6 +3,8 @@ export const state = () => ({
   tasks: [],
   completedTasks: [],
   previousTasks: [],
+  fileRows: [],
+  fileName: null,
 });
 
 export const actions = {
@@ -41,6 +43,12 @@ export const actions = {
     const { data } = await this.$axios.get('/batches');
     commit('SET_PREVIOUS_TASK', data);
   },
+
+  async loadFile({ commit }, batchId) {
+    const { data } = await this.$axios.get(`/file/${batchId}`);
+
+    commit('SET_FILE_DETAIL', data);
+  },
 };
 
 export const mutations = {
@@ -70,31 +78,9 @@ export const mutations = {
     const completedTasks = tasks.filter((t) => t.progress >= 100);
     state.completedTasks.push(...completedTasks);
   },
-};
 
-// {
-//   cancelledAt: null,
-//   createdAt: '2021-07-09T08:23:44.000000Z',
-//   failedJobs: 0,
-//   finishedAt: '2021-07-09T08:23:47.000000Z',
-//   id: '93de0c8b-6638-42c3-b9d4-ed963adfa2b1',
-//   name: 'csv 10 records',
-//   options: [],
-//   pendingJobs: 0,
-//   processedJobs: 1,
-//   progress: 100,
-//   totalJobs: 1,
-// },
-// {
-//   cancelledAt: null,
-//   createdAt: '2021-07-09T08:23:44.000000Z',
-//   failedJobs: 0,
-//   finishedAt: '2021-07-09T08:23:47.000000Z',
-//   id: '912121sdsd3de0c8b-6638-42c3-b9d4-ed963adfa2b1',
-//   name: 'csv 10 records',
-//   options: [],
-//   pendingJobs: 0,
-//   processedJobs: 1,
-//   progress: 100,
-//   totalJobs: 1,
-// },
+  SET_FILE_DETAIL(state, data) {
+    state.fileRows = data.rows;
+    state.fileName = data.file_name;
+  },
+};

@@ -1,9 +1,7 @@
 <template>
   <v-card elevation="10" class="pa-6">
     <v-form ref="form" v-model="valid" @submit.prevent="uploadFile">
-      <v-card-title v-model="file" class="justify-center mb-2">
-        Upload File
-      </v-card-title>
+      <v-card-title class="justify-center mb-2"> Upload File </v-card-title>
       <v-file-input
         v-model="file"
         filled
@@ -67,7 +65,7 @@ export default {
         this.$emit('clear');
 
         await this.upload(formData);
-        this.$refs.form.reset();
+        // this.$refs.form.reset();
 
         this.$emit('fileSent');
       } catch (e) {
