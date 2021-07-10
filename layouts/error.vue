@@ -1,12 +1,17 @@
 <template>
   <v-app dark>
-    <h1 v-if="error.statusCode === 404">
-      {{ pageNotFound }}
-    </h1>
-    <h1 v-else>
-      {{ otherError }}
-    </h1>
-    <NuxtLink to="/"> Home page </NuxtLink>
+    <v-card class="px-md-8 py-8 mx-auto text-center" max-width="600px">
+      <h1 class="display-4">
+        {{ error.statusCode }}
+      </h1>
+      <p class="headline my-4">
+        {{ error.message }}
+      </p>
+      <v-btn color="primary" text to="/">
+        <v-icon left>mdi-home</v-icon>
+        Home page
+      </v-btn>
+    </v-card>
   </v-app>
 </template>
 
@@ -19,17 +24,9 @@ export default {
       default: null,
     },
   },
-  data() {
-    return {
-      pageNotFound: '404 Not Found',
-      otherError: 'An error occurred',
-    };
-  },
   head() {
-    const title =
-      this.error.statusCode === 404 ? this.pageNotFound : this.otherError;
     return {
-      title,
+      title: this.error.message,
     };
   },
 };
