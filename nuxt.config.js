@@ -1,4 +1,4 @@
-import vuetify from './vuetify/index';
+import vuetify from '@/vuetify/index';
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
