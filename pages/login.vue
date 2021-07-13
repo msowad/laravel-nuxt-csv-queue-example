@@ -27,6 +27,10 @@ export default {
     initForm: { email: 'csv@mail.com', password: 'Pa$$w0rd!' },
   }),
 
+  head: {
+    title: 'Login',
+  },
+
   methods: {
     async login(user) {
       this.loading = true;

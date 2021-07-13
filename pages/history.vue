@@ -53,6 +53,10 @@ export default {
     await this.loadHistory();
   },
 
+  head: {
+    title: 'History',
+  },
+
   computed: {
     ...mapState({ tasks: ({ file }) => file.previousTasks }),
   },

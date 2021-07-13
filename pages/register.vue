@@ -24,6 +24,10 @@ export default {
 
   data: () => ({ loading: false, errors: null }),
 
+  head: {
+    title: 'Register',
+  },
+
   methods: {
     async register(user) {
       this.loading = true;

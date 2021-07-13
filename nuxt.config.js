@@ -1,8 +1,8 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - client',
-    title: 'client',
+    titleTemplate: '%s - laravel nuxt csv queue example',
+    title: 'laravel nuxt csv queue example',
     htmlAttrs: {
       lang: 'en',
     },

@@ -22,6 +22,10 @@ export default {
     await this.loadPendingTask();
   },
 
+  head: {
+    title: 'Upload',
+  },
+
   computed: {
     ...mapState({
       tasks: ({ file }) => file.tasks,
