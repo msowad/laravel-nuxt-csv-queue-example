@@ -1,5 +1,3 @@
-import colors from 'vuetify/es5/util/colors';
-
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -83,11 +81,11 @@ export default {
       dark: false,
       themes: {
         light: {
-          primary: colors.purple,
-          secondary: colors.blueGrey,
+          primary: '#9c27b0',
+          secondary: '#607d8b',
         },
         dark: {
-          primary: colors.purple.lighten1,
+          primary: '#cc4de2',
         },
       },
     },
