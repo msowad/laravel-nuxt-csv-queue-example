@@ -1,4 +1,4 @@
-import vuetify from '@/vuetify/index';
+import colors from 'vuetify/es5/util/colors';
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -71,7 +71,27 @@ export default {
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
-  vuetify,
+  vuetify: {
+    customVariables: ['~/assets/variables.scss'],
+    treeShake: true,
+    defaultAssets: {
+      font: {
+        family: 'Poppins',
+      },
+    },
+    theme: {
+      dark: false,
+      themes: {
+        light: {
+          primary: colors.purple,
+          secondary: colors.blueGrey,
+        },
+        dark: {
+          primary: colors.purple.lighten1,
+        },
+      },
+    },
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
