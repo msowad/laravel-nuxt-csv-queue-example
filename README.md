@@ -1,4 +1,9 @@
-# client
+<p align="center"><a href="https://laravel-nuxt-csv-queue-example.herokuapp.com" target="_blank"><img width="100%" src="https://i.ibb.co/C77ZhcG/csv-file-upload-in-queue-with-laravel-api-example.png" alt="screenshot" border="0"></a></p>
+
+### <a href="https://laravel-nuxt-csv-queue-example.herokuapp.com" target="_blank">Live site</a>
+### <a href="https://github.com/devsowad/laravel-csv-api" target="_blank">Laravel API</a>
+
+## Large CSV file uploading in queue with laravel API example
 
 ## Build Setup
 
